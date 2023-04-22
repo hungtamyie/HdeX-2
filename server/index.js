@@ -3,7 +3,7 @@ const app = express();
 const serv = require('http').Server(app);
 const path = require('path')
 
-const port = 2000;
+const port = 3000;
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '..', '/client/index.html'));
