@@ -1,0 +1,834 @@
+body {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 20px;
+    color: white;
+    overflow: hidden;
+}
+
+.fullscreen{
+    background: linear-gradient(180deg, rgb(4, 5, 4) 0%, #020e06 100%);
+    background: linear-gradient(180deg, rgb(5, 4, 4) 0%, #2e0202 100%);
+    background: linear-gradient(180deg, rgb(0, 0, 0) 0%, #050a13 100%);
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position:absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    height:100%;
+    width:100%;
+}
+
+.container {
+    background: black;
+    display: inline-block;
+    border: 1px solid white;
+}
+
+.container_title {
+    margin-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid white;
+    text-align: center;
+    font-size: 30px;
+    color: #14FF00;
+}
+
+.login_screen {
+    justify-content: center;
+    align-items: center;
+}
+
+.flex {
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+}
+
+.login_container {
+    text-align: center;
+    width: 500px;
+}
+
+.login_input {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 20px;
+    color: white;
+    background: black;
+    width: 200px;
+    border: 1px solid white;
+}
+
+.login_input:focus {
+    border: 1px solid #14FF00;
+    outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.prevent-select {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+.login_start {
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    width: 120px;
+    padding: 10px;
+    color: red;
+    border: 1px solid red;
+}
+
+.create_room_container {
+    text-align: left;
+    padding: 10px;
+}
+
+.link_text {
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+}
+
+.link_text:hover {
+    cursor: pointer;
+    color: rgb(0, 132, 255);
+    text-decoration: underline;
+}
+
+.btype {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+    cursor: pointer;
+}
+
+.btype2 {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+    cursor: pointer;
+}
+
+
+.btype:hover {
+    color: white;
+}
+
+.btype2:hover {
+    color: #14FF00;
+}
+
+
+.btype:active {
+    background-color: white;
+}
+
+.btype2:active {
+    background-color: white;
+    color: black;
+}
+
+.setup_screen {
+    justify-content: center;
+    align-items: center;
+}
+
+
+.team_container {
+    width: 500px;
+    height: 500px;
+    margin: 3px;
+    text-align: center;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+    overflow-y: scroll;
+}
+
+.team_container::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+.team_a {
+    color: #FF00E5
+}
+
+.team_b {
+    color: yellow
+}
+
+.mid_column {
+    width: 200px;
+    height: 500px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.mid_button {
+    width: 100%;
+    text-align: center;
+    height: 50px;
+    background: black;
+    color: white;
+    border: 1px solid white;
+    line-height: 50px;
+    margin-bottom: 10px;
+}
+
+.room_code {
+    border: 1px solid white;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 40px;
+    padding-bottom: 15px;
+    width: 100%;
+    color: red;
+}
+
+.ready_button {
+    width: 100%;
+    text-align: center;
+    height: 100px;
+    background: black;
+    color: #14FF00;
+    border: 1px solid white;
+    line-height: 100px;
+    margin-bottom: 10px;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+.ready_button:hover {
+    border: 1px solid #14FF00;
+    background-color: #041103;
+}
+
+.ready_button:active {
+    background-color: white;
+}
+
+.ready_button_on {
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+     box-sizing: border-box; 
+    padding-top: 15px;
+    font-size: 22px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    height: 100px;
+    background: #041103;
+    border: 1px solid #14FF00;
+    color: #14FF00;
+    line-height: 30px;
+    margin-bottom: 10px;
+}
+
+.ready_button_on:active {
+    background-color: white;
+    color: black;
+}
+
+.ready_bar {
+    border: 1px solid white;
+    border-bottom: none;
+    height: 29px;
+    width: 100%;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.ready_bar_inner {
+    height: 25px;
+    margin-top: 2px;
+    width: 50%;
+    background: white;
+    margin-left: 2px;
+}
+
+.player_card {
+    border: 1px solid white;
+    display: inline-block;
+    width: 460px;
+    text-align: left;
+    margin-top: 10px;
+    height: 110px;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+}
+
+.player_card_image {
+    width: 110px;
+    height: 110px;
+    display: inline-block;
+}
+
+.player_card_text {
+    font-size: 11px;
+    display: inline-block;
+    text-align: left;
+    width: 330px;
+    height: 110px;
+    margin-left: 10px;
+}
+
+.player_card_text > h3{
+    font-size: 22px;
+    line-height: 19px;
+    padding: 0px;
+    margin: 0px;
+    margin-top: -5px;
+    margin-bottom: 10px;
+    line-height: 28px;
+    transform: translateY(10px);
+}
+
+#scoreboard {
+    width: 1100px;
+    font-size: 15px;
+    border: 1px solid white;
+    background: black;
+}
+th {
+    padding: 5px;
+    text-align: center;
+    border: 1px solid white;
+}
+th:nth-child(1){
+    background: white;
+    color: black;
+}
+td {
+    text-align: center;
+    height: 35px;
+}
+td:first-child {
+    width: 210px;
+}
+.team_points {
+    font-size: 20px;
+    background: rgb(20, 20, 20);
+}
+.team_points {
+    font-size: 20px;
+    background: rgb(20, 20, 20);
+}
+
+.scoreboard_screen {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#preparingMsg {
+    background: black;
+    border: 1px solid white;
+    width: 1100px;
+    padding: 15px;
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+     box-sizing: border-box; 
+     text-align: center;
+}
+
+.preparation_screen {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.public_key_input {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 20px;
+    color: white;
+    background: black;
+    width: 250px;
+    height: 35px;
+    border: 1px solid white;
+}
+
+.public_key_input:focus {
+    border: 1px solid #14FF00;
+    outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.preparation_container {
+    width: 800px;
+    height: 430px;
+    background: black;
+    border: 1px solid white;
+}
+
+.public_key_input_container {
+    margin-left: 20px;
+    height: 430px;
+    display: inline-block;
+}
+
+.private_key_start_container {
+    display: inline-block;
+    margin-left: 30px;
+    width: 400px;
+}
+
+#privateKey {
+    color: black;
+    background: red;
+    font-size: 40px;
+}
+
+#startRound {
+    color: #14FF00;
+    border: 1px solid #14FF00; 
+    width: 200px;
+    font-size: 30px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#startRound:hover {
+    color: white;
+}
+
+#startRound:active {
+    background-color: white;
+    color: black;
+}
+
+.preparation_bar_outer {
+    height: 17px;
+    width: 800px;
+    border: 1px solid white;
+    border-top: none;
+    background-color: black;
+}
+
+.preparation_bar_inner {
+    margin-left: 2px;
+    background-color: white;
+    height: 13px;
+    width: 796px;
+    margin-top: 2px;
+}
+
+#serverMessage {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    background: black;
+    border: 1px solid white;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    padding: 15px;
+}
+
+.game_screen {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.game_container {
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    width: 910px;
+    height: 650px;
+    background: black;
+    border: 1px solid white;
+}
+
+.upper_game_container {
+    height: 350px;
+    width: 900px;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+}
+
+.game_container_console {
+    border: 1px solid white;
+    height: 250px;
+    width: 883px;
+}
+
+.console_title {
+    color: white;
+    font-size: 22px;
+    text-align: center;
+    padding: 2px;
+    border-bottom: 1px solid white;
+}
+
+#consoleOutput {
+    font-size: 15px;
+    padding-top: 5px;
+    padding-left: 5px;
+    height: 215px;
+    overflow-y: scroll;
+    scrollbar-color: #ffffff #000000;
+}
+
+#consoleOutput::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
+    width: 16px;
+    background: rgba(0, 0, 0, 0);
+}
+
+#consoleOutput::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 0px;
+    border: 2px solid black;
+  }
+
+.public_keys_container {
+    width: 400px;
+    height: 350px;
+    border: 1px solid white;
+}
+
+.public_keys_title {
+    color: white;
+    font-size: 25px;
+    text-align: center;
+    padding: 2px;
+    border-bottom: 1px solid white;
+}
+
+#publicKeys {
+    padding-left: 5px;
+    padding-top: 5px;
+    margin-top: 15px;
+}
+
+.public_key {
+    font-size: 25px;
+    margin-bottom: 30px;
+}
+
+.lbl {
+    font-size: 12px;
+    color: #14FF00;
+}
+
+.right_container {
+    height: 350px;
+    width: 462px;
+    margin-left: 5px;
+}
+
+.right_container > h2 {
+    margin: 0px;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.right_container > h3 {
+    font-size: 25px;
+    color: red;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-weight: normal;
+}
+
+.private_key_container {
+    border: 1px solid white;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.private_key_title {
+    padding: 2px;
+    text-align: center;
+    border-bottom: 1px solid white;
+}
+
+#privateKeyDisplay {
+    color: red;
+    font-size: 35px;
+    display: inline-block;
+}
+
+.game_input_container {
+    margin-top: 15px;
+}
+
+#inputGuesser {
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    height: 43px;
+    display: none;
+}
+
+#sendButton {
+    display: inline-block;
+    background-color: #23F2FF;
+    text-align: center;
+    font-size: 25px;
+    color: black;
+    width: 90px;
+    height: 41px;
+    line-height: 41px;
+    cursor: pointer
+}
+
+#sendButton:hover {
+    background: rgb(193, 253, 255);
+    -webkit-box-shadow: 0px 0px 24px 0px rgba(59,216,255,1);
+    -moz-box-shadow: 0px 0px 24px 0px rgba(59,216,255,1);
+    box-shadow: 0px 0px 24px 0px rgba(59,216,255,1);
+}
+
+#sendButton:active {
+    color: rgba(59,216,255,1);
+    background-color: white;
+}
+
+
+#gameInput {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 25px;
+    height: 30px;
+    padding: 2.5px;
+    color: white;
+    background: black;
+    width: 360px;
+    border: 3px solid #23F2FF;
+}
+
+#gameInput:focus {
+    border: 3px solid rgb(193, 253, 255);
+    -webkit-box-shadow: 0px 0px 24px 0px rgba(59,216,255,1);
+    -moz-box-shadow: 0px 0px 24px 0px rgba(59,216,255,1);
+    box-shadow: 0px 0px 24px 0px rgba(59,216,255,1);
+    outline:none !important;
+    outline-width: 0 !important;
+}
+
+#sendingGuesser {
+    display: inline-block;
+    position: absolute;
+    width: 0px;
+    z-index: 20;
+    height: 0px;
+    display: none;
+}
+.relativeBox {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    position: relative;
+    width: 462px;
+    height: 43px;
+    background-color: black;
+    border: 3px solid #23F2FF;
+}
+
+#sendingText {
+    color: #23F2FF;
+    position: relative;
+    width: 0px;
+    height: 0px;
+    top: 6px;
+    left: 5px;
+    mix-blend-mode: difference;
+}
+
+.sending_inner {
+    height: 30px;
+    width: 300px;
+}
+
+#sendingBar {
+    background: #23F2FF;
+    width: 452px;
+    height: 33px;
+    margin-left: 2px;
+    margin-top: 2px;
+    
+}
+
+#inputTransmitter {
+    height: 43px;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+}
+
+#clock {
+    border: 1px solid #23F2FF;
+    height: 43px;
+    width: 73px;
+    text-align: center;
+    line-height: 43px;
+    display: inline-block;
+}
+
+
+.generateNewKeyButton_clickable {
+    border: 1px solid white;
+    height: 43px;
+    width: 280px;
+    text-align: center;
+    line-height: 43px;
+    display: inline-block;
+    cursor: pointer;
+}
+.generateNewKeyButton_clickable>span {
+    font-size: 12px;
+    height: 0px;
+    position: relative;
+    top: -1px;
+    color: red;
+}
+.generateNewKeyButton_clickable:hover {
+    border: 1px solid red;
+}
+
+.generateNewKeyButton_clickable:active {
+    color: white;
+    border: 1px solid white;
+}
+
+.generateNewKeyButton_unclickable {
+    border: 1px solid grey;
+    height: 43px;
+    width: 280px;
+    text-align: center;
+    line-height: 43px;
+    display: inline-block;
+    cursor: default;
+    color: grey;
+}
+.generateNewKeyButton_unclickable>span {
+    font-size: 12px;
+    height: 0px;
+    position: relative;
+    top: -1px;
+    color: rgb(73, 73, 73);
+}
+
+#giveUpButton {
+    border: 1px solid red;
+    height: 43px;
+    width: 83px;
+    line-height: 43px;
+    text-align: center;
+    font-size: 20px;
+    color: red;
+    display: inline-block; 
+    cursor: pointer;
+}
+
+
+#giveUpButton:hover {
+    color: white;
+}
+
+#giveUpButton:active {
+    color: white;
+    border: 1px solid white;
+}
+
+#gameTimeBarContainer {
+    width: 910px;
+    height: 16px;
+    border: 1px solid white;
+    border-top: 0px;
+    background: black;
+}
+
+#gameTimeBar {
+    width: 906px;
+    height: 12px;
+    margin-left: 2px;
+    margin-top: 2px;
+    background: white;
+}
+
+#instructionsContainer {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+#instructions {
+    width: 700px;
+    height: 560px;
+    border: 1px solid white;
+    background-color: black;
+}
+
+#exitInstructions {
+    color: red;
+    width: 30px;
+    height: 32px;
+    display: inline-block;
+    position: relative;
+    left: 225px;
+    top: 2px;
+    cursor: pointer;
+}
+
+#exitInstructions:hover {
+    color: white;
+}
+
+#instructionsHeading {
+    padding-bottom: 5px;
+    text-align: center;
+    font-size: 30px;
+    border-bottom: 1px solid white;
+}
+
+#instructionsHeading > p {
+    position: relative;
+    left: 25px;
+    margin: 0px;
+    padding: 0px;
+    display: inline-block;
+}
+
+#innerInstructionText {
+    width: 690px;
+    height: 500px;
+    color: rgb(180, 180, 180);
+    overflow-y: scroll;
+    scrollbar-color: #ffffff #000000;
+    padding: 5px;
+}
+
+#innerInstructionText::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
+    width: 16px;
+    background: rgba(0, 0, 0, 0);
+}
+
+#innerInstructionText::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 0px;
+    border: 2px solid black;
+  }

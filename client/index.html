@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HdeX-2</title>
+    <link rel="stylesheet" href="style.css">
+    <script
+    src="https://code.jquery.com/jquery-3.6.4.min.js"
+    integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+    crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/color/jquery.color-2.1.2.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="ui.js"></script>
+    <script src="redraw.js"></script>
+    <script src="tick.js"></script>
+</head>
+<body>
+    <div id="instructionsContainer">
+        <div id="instructions">
+            <div id="instructionsHeading">
+                <p>Instructions</p]>
+                <div id="exitInstructions" class="prevent-select">X</div>
+            </div>
+            <div id="innerInstructionText">
+                <span style="color: #ffffff">
+                Welcome to HdeX-2 Encryption: The Game <br><br>
+                This is a cooperative game for 4-8 players. Everybody needs to be in a voice call. <br><br>
+                </span>
+                With quantum computing threatening modern security systems, government agencies are searching for newer, safer encryption methods. Timothee Lecon has come up with <span style="color: orange">HdeX-2</span>, the <span style="color: orange">Highly Dubious and Experimental</span> encryption method.
+                It will be your job to test out this system and see if it works. 
+                <br><br>
+                There will be two teams. Each round, one team will be the <span style="color: #14FF00">Transmitting</span> Team. They will have a <span style="color: #14FF00">transmitter</span> who will try to send <span style="color: #fffb27">5 public keys</span> to their <span style="color: #14FF00">receivers</span>. The other team, the <span style="color: #ff0000">Adversarial Agents</span> will try to intercept these keys.
+                <br><br>At the start of a round, the <span style="color: #14FF00">transmitter</span> will be presented with a <span style="color: #bd0a55">private key</span>. This is a key only they and their team can see.<br>
+                <br> Let's take the example: <span style="color: #bd0a55">[Bunny]</span>. The transmitter will come up with public keys that are related to this word. For example: <span style="color: #fffb27">[Carrot], [Jump], </span> etc...
+                
+                <br><br>
+                --------------------------------<br>
+                The <span style="color: #14FF00">receivers</span> will see:<br>
+    
+                Public keys: <span style="color: #fffb27">[_a____] [___p]</span><br>
+                Private key: <span style="color: #bd0a55">[Bunny]</span>
+                <br>--------------------------------<br>
+                <br>
+                --------------------------------<br>
+                The <span style="color: red">adversarial agents</span> will see:<br>
+    
+                Public key: <span style="color: #fffb27">[_a____] [___p]</span><br>
+                Private key: <span style="color: #4d4d4d">[UNKNOWN]</span>
+                <br>--------------------------------<br>
+    
+                <br><br>
+    
+                So when the <span style="color: #14FF00">transmitter</span> says, <span style="color: #ffffff">"What it eats and an action it does"</span>, the <span style="color: #14FF00">receivers</span> will understand the message but the <span style="color: #ff0000">adversarial agents</span> will be left in the dark. That's the core concept behind <span style="color: orange">HdeX-2</span>, the rest is just details. Now go out there and have some fun!
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <div id="serverMessage"></div>
+    <!--Login Screen-->
+    <div id="loginScreen" class="login_screen fullscreen flex">
+        <div class="login_container container">
+            <div class="container_title">HdeX-2 Encryption: The Game</div>
+            <br>
+            <span>Pseudonym: </spam><input id="nameInput" class="login_input" maxlength="18" autocomplete="off">
+            <br>
+            <br>
+            <span>Room Key: &nbsp;</spam><input id="roomInput" class="login_input" maxlength="4" autocomplete="off">
+            <br>
+            <div class="login_start prevent-select btype" id="connectBtn">Connect</div>
+            <div class="create_room_container">
+                No room? <span id="createBtn" class="link_text">Initialize your own</span>
+            </div>
+        </div>
+    </div>
+
+    <!--Room Join Screen-->
+    <div id="setupScreen" class="setup_screen fullscreen flex">
+        <div class="team_container container" id="teamContainerA">
+            <div class="container_title team_a">L33T H4KRZ</div>
+            <div id="teamAPlayers"></div>
+        </div>
+        <div class="mid_column">
+            <div class="room_code"><span style="font-size: 15px; color: white;">Room Key:</span><br> <span id="roomCode">ADFA</span></div>
+            <div class="btype2 mid_button" id="switchTeams">Switch Teams</div>
+            <div class="btype2 mid_button" id="Spectate">Spectate</div>
+            <div class="btype2 mid_button" id="Settings">Settings</div>
+            <div class="btype2 mid_button" id="InstructionsButton">Instructions</div>
+            <div class="ready_bar">
+                <div class="ready_bar_inner" id="readyBar"></div>
+            </div>
+            <div class="ready_button prevent-select" id="readyButton">Ready</div>
+        </div>
+        <div class="team_container container" id="teamContainerB">
+            <div class="container_title team_b">C00L K1DZ</div>
+            <div id="teamBPlayers"></div>
+        </div>
+        <br>
+    </div>
+    <!--Scoreboard Screen-->
+    <div id="scoreboardScreen" class="scoreboard_screen fullscreen flex">
+        <table id="scoreboard">
+            <thead>
+                <th>Player</th>
+                <th>Public Keys Guessed</th>
+                <th>Public Keys Intercepted</th>
+                <th>Private Keys Cracked</th>
+                <th>Public Keys Transmitted</th>
+                <th>Public Keys Lost</td>
+                <th>Average Conversion Rate</th>    
+                <th>HdeX-2 Score</th>    
+            </thead>
+            <tr id="score_T1_p1">
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>    
+                <td>0</td>    
+            </tr>
+            <tr id="score_T1_p2">
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>    
+                <td>0</td>    
+            </tr>
+            <tr id="score_T1_p3"> 
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>    
+                <td>0</td>    
+            </tr>
+            <tr id="score_T1_p4">
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>    
+                <td>0</td>    
+            </tr>
+            <tr>
+                <td colspan="8" class="team_points team_a">L33T H4KRZ - <span id="teamPointsA">0</span> pts</td>  
+            </tr>
+            <tr id="score_T2_p1">
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>    
+                <td>0</td>    
+            </tr>
+            <tr id="score_T2_p2">
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>    
+                <td>0</td>    
+            </tr>
+            <tr id="score_T2_p3">
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>    
+                <td>0</td>    
+            </tr>
+            <tr id="score_T2_p4">
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>    
+                <td>0</td>    
+            </tr>
+            <tr>
+                <td colspan="8" class="team_points team_b">C00L K1DZ - <span id="teamPointsB">0</span> pts</td>  
+            </tr>
+        </table>
+        <br>
+        <div id="preparingMsg">Waiting for Mei to start the round. (6 Rounds Left)</div>
+    </div>
+    <!--Preparation Screen-->
+    <div id="preparationScreen" class="preparation_screen fullscreen flex">
+        <div class="preparation_container flex">
+            <div class="public_key_input_container">
+                <h2>Public Keys:</h2>
+                <br>
+                <span id="lb1">0x0001:</span><input autocomplete="off" id="pkIn1" class="public_key_input" maxlength="23" value="Test"><br><br>
+                <span id="lb2">0x0010:</span><input autocomplete="off" id="pkIn2" class="public_key_input" maxlength="23" value="Test2"><br><br>
+                <span id="lb3">0x0011:</span><input autocomplete="off" id="pkIn3" class="public_key_input" maxlength="23" value="Test3"><br><br>
+                <span id="lb4">0x0100:</span><input autocomplete="off" id="pkIn4" class="public_key_input" maxlength="23" value="Test4"><br><br>
+                <span id="lb5">0x0101:</span><input autocomplete="off" id="pkIn5" class="public_key_input" maxlength="23" value="Test5"><br><br>
+            </div>
+            <div class="private_key_start_container">
+                <h2>Private Key:</h2>
+                <span id="privateKey">*******</span>
+                <br><br>
+                <div>You are the transmitter!</div><br>
+                <div>Come up with 5 words related to the private key. Make sure to spell them correctly or your team won't be able to guess them! <br><br> <span id="instructionsSeconds">You will have 60 seconds.</span><br><br></div>
+                <div id="startRound" class="prevent-select">Show keys</div>
+            </div>
+        </div>
+        <div class="preparation_bar_outer"><div class="preparation_bar_inner" id="preparation_bar"></div></div>
+    </div>
+    <!--Game container-->
+    <div id="gameScreen" class="game_screen fullscreen flex">
+        <div class="game_container flex">
+            <div class="upper_game_container flex">
+                <div class="public_keys_container">
+                    <div class="public_keys_title">Public Keys:</div>
+                    <div id="publicKeys">
+                        <div class="public_key"><span class="lbl">0x0001:</span><span id="publicKey1"></span></div>
+                        <div class="public_key"><span class="lbl">0x0010:</span><span id="publicKey2"></span></div>
+                        <div class="public_key"><span class="lbl">0x0011:</span><span id="publicKey3"></span></div>
+                        <div class="public_key"><span class="lbl">0x0100:</span><span id="publicKey4"></span></div>
+                        <div class="public_key"><span class="lbl">0x0101:</span><span id="publicKey5"></span></div>
+                    </div>
+                </div>
+                <div class="right_container">
+                    <h2>Team <span class="team_a" id="gameTitle">L33T H4KRZ</span></h2>
+                    <h3 id="topMessage">TOP SECRET TRANSMISSION</h3>
+                    <div class="player_card">
+                        <img src="./images/agent1.png" class="player_card_image" id="gamePlayerCard">
+                        <div class="player_card_text" id="gamePlayerCardText">
+                            <h3>Mei</h3> 
+                            <br> Professional Penetration Tester <br> Age: 17 Occupation: NASA Engineer <br> Likes cold pizza and lukewarm coke
+                        </div>
+                    </div>
+                    <div class="private_key_container">
+                        <div class="private_key_title">Private Key: </div>
+                        <div id="privateKeyDisplay">Truck</div>
+                    </div>
+                    <div class="game_input_container">
+                        <div id="sendingGuesser">
+                            <div class="relativeBox">
+                                <div id="sendingBar">
+                                    <div id="sendingText">
+                                        <div class="sending_inner">
+                                            Please wait. Uploading...
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="inputGuesser" class="flex">
+                            <input input autocomplete="off" id="gameInput" class="game_input" maxlength="200" placeholder="Type here">
+                            <div id="sendButton" class="prevent-select">Send</div>
+                        </div>
+                        <div id="inputTransmitter" class="flex">
+                            <div id="clock">90.00s</span></div>
+                            <div id="generateNewKeyButton" class="prevent-select generateNewKeyButton_clickable">New Private Key <span>(-20pts)</span></div>
+                            <div id="giveUpButton" class="prevent-select">Give Up</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="game_container_console">
+                <div class="console_title">Console:</div>
+                <div id="consoleOutput">
+                </div>
+            </div>
+        </div>
+        <div id="gameTimeBarContainer">
+            <div id="gameTimeBar"></div>
+        </div>
+    </div>
+</body>
+</html>
