@@ -37,6 +37,7 @@ body {
 }
 
 .login_screen {
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -832,3 +833,9 @@ td:first-child {
     border-radius: 0px;
     border: 2px solid black;
   }
+#happyBirthday {
+    position: fixed;     
+    text-align: center;    
+    bottom: 5px; 
+    width: 100%;
+}

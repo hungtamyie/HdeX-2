@@ -253,8 +253,7 @@ function serverTick() {
             }
         }
         if(gameRoomCount == 0){
-            //tickRate = 5000;
-            tickRate = 300;
+            tickRate = 5000;
         }
         else {
             tickRate = 200;
